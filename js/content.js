@@ -1,6 +1,6 @@
-chrome.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.message !== 'gitlab_load') {
-    return;
+    return sendResponse({ status: true });
   }
 
   const branchName = 'testing';
@@ -31,4 +31,6 @@ chrome.runtime.onMessage.addListener((request) => {
     childList: true,
     subtree: true
   });
+
+  return sendResponse({ status: true });
 });

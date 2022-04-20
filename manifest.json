@@ -1,10 +1,9 @@
 {
   "name": "No Merge Button",
   "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "Disable GitLab interactive conflict resolution in testing branch",
+  "manifest_version": 3,
+  "description": "Disable GitLab interactive conflict resolution in testing branch.",
   "homepage_url": "https://codeigniter.org.cn",
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -14,12 +13,15 @@
     "tabs"
   ],
   "background": {
-    "scripts": ["js/background.js"]
+    "service_worker": "js/background.js"
   },
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
 			"js": ["js/content.js"]
 		}
-	]
+	],
+  "host_permissions": [
+    "*://*/*"
+  ]
 }
