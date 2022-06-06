@@ -4,6 +4,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 
   const branchName = 'testing';
+  const sourceBranchNamePrefix = 'temp/';
 
   const observer = new MutationObserver(() => {
     const elButton = document.querySelector('.js-submit-button');
@@ -13,7 +14,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
       const elBranch = document.querySelectorAll('.js-toggle-container .ref-name');
 
-      if (elBranch && elBranch[1] && elBranch[1].innerHTML === branchName) {
+      if (elBranch && elBranch[0] && elBranch[0].innerHTML.indexOf(sourceBranchNamePrefix) !== 0 && elBranch[1] && elBranch[1].innerHTML === branchName) {
         const elParent = elButton.parentNode;
         const newButton = document.createElement('button');
 
@@ -25,9 +26,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         elParent.appendChild(newButton);
       }
     }
-  })
-  
-  observer.observe(document.querySelector('#conflicts'), { 
+  });
+
+  observer.observe(document.querySelector('#conflicts'), {
     childList: true,
     subtree: true
   });

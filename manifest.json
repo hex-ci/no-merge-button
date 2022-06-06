@@ -1,6 +1,6 @@
 {
   "name": "No Merge Button",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 3,
   "description": "Disable GitLab interactive conflict resolution in testing branch.",
   "homepage_url": "https://codeigniter.org.cn",
